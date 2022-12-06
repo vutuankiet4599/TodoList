@@ -1,0 +1,96 @@
+body {
+  background-color: antiquewhite;
+  font-size: 20px;
+  font-family: "Lucida Sans", "Lucida Sans Regular", "Lucida Grande",
+    "Lucida Sans Unicode", Geneva, Verdana, sans-serif;
+}
+
+.container {
+  background-color: whitesmoke;
+  box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
+  margin: 10px;
+  padding: 25px;
+  display: flex;
+  flex-direction: column;
+  flex-wrap: wrap;
+  align-items: center;
+  min-height: 85vh;
+}
+
+.hidden {
+  display: none;
+}
+
+button:hover {
+  cursor: pointer;
+}
+
+.btn {
+  width: 100%;
+  border: none;
+  border-radius: 15px;
+  color: white;
+  text-decoration: none;
+  text-align: center;
+  padding: 5px 10px;
+  font-size: 16px;
+}
+
+.btn-edit {
+  background-color: rgb(35, 105, 209);
+}
+
+.btn-edit:active {
+  background-color: rgb(15, 71, 155);
+}
+
+.btn-delete {
+  background-color: rgb(212, 21, 47);
+}
+
+.btn-delete:active {
+  background-color: rgb(153, 13, 32);
+}
+
+.btn-add {
+  margin-bottom: 10px;
+  background-color: rgb(86, 226, 50);
+}
+
+.btn-add:active {
+  background-color: rgb(64, 170, 37);
+}
+
+.btn-turn-back {
+  margin-top: 10px;
+  background-color: rgb(65, 72, 78);
+}
+
+.btn-turn-back:active {
+  background-color: rgb(96, 99, 102);
+}
+
+.btn-submit {
+  width: 50%;
+  margin-top: 10px;
+  margin-bottom: 10px;
+  background-color: #4f9eec;
+}
+
+.btn-submit:active {
+  background-color: #357ec7;
+}
+
+input {
+  width: 100%;
+  padding: 12px 20px;
+  margin: 8px 0;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  box-sizing: border-box;
+  font-size: 18px;
+}
+
+.controller {
+  padding: 0;
+}
