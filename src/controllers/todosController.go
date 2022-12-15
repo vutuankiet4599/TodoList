@@ -20,7 +20,6 @@ type Todo struct {
 }
 
 func GetAllTodo(w http.ResponseWriter, r *http.Request) {
-	w.Header().Set("Content-Type", "application/json");
 	db, err := sql.Open("mysql", "root:@tcp(127.0.0.1:3306)/todo_list");
 	if err != nil {
 		panic(err.Error());
