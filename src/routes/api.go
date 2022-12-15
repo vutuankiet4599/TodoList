@@ -13,6 +13,7 @@ func InitAPIRoutes() {
 	r.HandleFunc("/api/todo", controllers.PostTodo).Methods("POST");
 	r.HandleFunc("/api/todo/{id}", controllers.PutTodo).Methods("PUT");
 	r.HandleFunc("/api/todo/{id}", controllers.DeleteTodo).Methods("DELETE");
+	r.HandleFunc("/api/todo", controllers.DeleteAllTodo).Methods("DELETE");
 
 	http.Handle("/", r);
 }

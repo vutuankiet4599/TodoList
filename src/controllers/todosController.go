@@ -127,3 +127,18 @@ func DeleteTodo(w http.ResponseWriter, r *http.Request)  {
 	
 	json.NewEncoder(w).Encode("OK");
 }
+
+func DeleteAllTodo(w http.ResponseWriter, r *http.Request)  {
+	db, err := sql.Open("mysql", "root:@tcp(127.0.0.1:3306)/todo_list");
+	if err != nil {
+		panic(err.Error());
+	}
+	defer db.Close();
+
+	_, err = db.Query("DELETE FROM todos WHERE 1");
+	if err != nil {
+		panic(err.Error());
+	}
+
+	json.NewEncoder(w).Encode("OK");
+}
