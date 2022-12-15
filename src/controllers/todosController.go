@@ -20,6 +20,7 @@ type Todo struct {
 }
 
 func GetAllTodo(w http.ResponseWriter, r *http.Request) {
+	w.Header().Set("Access-Control-Allow-Origin", "*");
 	db, err := sql.Open("mysql", "root:@tcp(127.0.0.1:3306)/todo_list");
 	if err != nil {
 		panic(err.Error());
@@ -45,6 +46,7 @@ func GetAllTodo(w http.ResponseWriter, r *http.Request) {
 }
 
 func PostTodo(w http.ResponseWriter, r *http.Request) {
+	w.Header().Set("Access-Control-Allow-Origin", "*");
 	db, err := sql.Open("mysql", "root:@tcp(127.0.0.1:3306)/todo_list");
 	if err != nil {
 		panic(err.Error());
@@ -75,6 +77,7 @@ func PostTodo(w http.ResponseWriter, r *http.Request) {
 }
 
 func PutTodo(w http.ResponseWriter, r *http.Request) {
+	w.Header().Set("Access-Control-Allow-Origin", "*");
 	db, err := sql.Open("mysql", "root:@tcp(127.0.0.1:3306)/todo_list");
 	if err != nil {
 		panic(err.Error());
@@ -88,23 +91,20 @@ func PutTodo(w http.ResponseWriter, r *http.Request) {
 	defer stmt.Close();
 
 	id := mux.Vars(r)["id"];
-	body, err := ioutil.ReadAll(r.Body);
 	var content Todo;
-	err = json.Unmarshal(body, &content);
-	if err != nil {
-		panic(err.Error());
-	}
-
+	json.NewDecoder(r.Body).Decode(&content);
+	
 	_, err = stmt.Exec(content.Content, id);
 
 	if err != nil {
 		panic(err.Error());
 	}
 
-	json.NewEncoder(w).Encode(content.Content);
+	json.NewEncoder(w).Encode("OK");
 }
 
 func DeleteTodo(w http.ResponseWriter, r *http.Request)  {
+	w.Header().Set("Access-Control-Allow-Origin", "*");
 	db, err := sql.Open("mysql", "root:@tcp(127.0.0.1:3306)/todo_list");
 	if err != nil {
 		panic(err.Error());
@@ -128,6 +128,7 @@ func DeleteTodo(w http.ResponseWriter, r *http.Request)  {
 }
 
 func DeleteAllTodo(w http.ResponseWriter, r *http.Request)  {
+	w.Header().Set("Access-Control-Allow-Origin", "*");
 	db, err := sql.Open("mysql", "root:@tcp(127.0.0.1:3306)/todo_list");
 	if err != nil {
 		panic(err.Error());

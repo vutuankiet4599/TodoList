@@ -39,7 +39,7 @@ const displayTodoTable = async () => {
     let buttonDelete = document.createElement("button");
 
     tdId.textContent = String(i + 1);
-    tdContent.textContent = rowContent[i].Todo;
+    tdContent.textContent = rowContent[i].content;
 
     buttonEdit.textContent = "Edit";
     buttonEdit.classList.add("btn");
