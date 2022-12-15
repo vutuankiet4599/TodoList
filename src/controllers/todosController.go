@@ -7,6 +7,7 @@ import (
 	"net/http"
 
 	_ "github.com/go-sql-driver/mysql"
+	"github.com/gorilla/mux"
 )
 
 type TodoList struct {
@@ -72,4 +73,34 @@ func PostTodo(w http.ResponseWriter, r *http.Request) {
 
 	json.NewEncoder(w).Encode(content.Content);
 
+}
+
+func PutTodo(w http.ResponseWriter, r *http.Request) {
+	db, err := sql.Open("mysql", "root:@tcp(127.0.0.1:3306)/todo_list");
+	if err != nil {
+		panic(err.Error());
+	}
+	defer db.Close();
+
+	stmt, err := db.Prepare("UPDATE todos SET content = ? WHERE id = ?");
+	if err != nil {
+		panic(err.Error());
+	}
+	defer stmt.Close();
+
+	id := mux.Vars(r)["id"];
+	body, err := ioutil.ReadAll(r.Body);
+	var content Todo;
+	err = json.Unmarshal(body, &content);
+	if err != nil {
+		panic(err.Error());
+	}
+
+	_, err = stmt.Exec(content.Content, id);
+
+	if err != nil {
+		panic(err.Error());
+	}
+
+	json.NewEncoder(w).Encode(content.Content);
 }
